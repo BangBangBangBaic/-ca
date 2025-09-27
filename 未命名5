@@ -1,0 +1,6 @@
+ template<typename T>
+struct node{
+	T date;
+	node* next;
+	node(const T&val)
+};
