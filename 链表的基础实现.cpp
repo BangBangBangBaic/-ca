@@ -1,51 +1,79 @@
 template<typename T>
-struct listnode{
-	T date;
-	listnode* next;
-	listnode(const T&val):date(val),next(nullptr){}
+struct ListNode{
+    T data;
+    ListNode* next;
+    ListNode(const T& val):data(val),next(nullptr){}
 };
-
 template<typename T>
-class linelist{
-	private:
-	listnode<T>* head;
-	public:
-		//²åÈëº¯Êý
-		void push_front(const T&val){
-			listnode<T>* currct=new listnode<T>(val);
-			currct.next=head;
-			head=currct;
-		}
-		void insert(listnode<T>*&a,listnode<T>*&b,const T&val){
-			listnode<T>* new_node=new listnode<T>(val);
-			a->next=new_node;
-			new_node->next=b;
-		}
-		void push_back(const T&val){
-			listnode<T>* new_node=new listnode<T>(val);
-			listnode<T>* p=head;
-			while(p->next!=nullptr){				
-				p=p->next;}
-			p->next=new_node;
-		}
-		listnode<T>* find(const T&val){
-			listnode<T>* current=head;
-			while(current->next!=nullptr){
-				
-			if(current->date!=val)current=current->next;
-			else return current;	
-			}
-			return nullptr;
-		}
-		void erase(const T&val){
-			listnode<T>* current=head;
-			if(current->next->date==val){
-				listnode<T>* temp=current->next;
-				current->next=temp->next;
-				delete temp;
-			}
-		}
-		
+class ListArray{
+    private:
+    ListNode<T>* head;
+    int size;
+    ListArray():ListNode<T>(const T&val),size(0);
+    public:
+    ~ListArray(){
+        while(head->next!=nullptr)
+        {ListNode<T>* deleteNode=head;
+        head=head->next;
+        delete deleteNode;
+        }
+    }
+    void push_fornt(const T&val){
+        ListNode<T>* new_node=new ListNode(val);
+        new_node->next=head;
+        head=new_node;
+        size++;
+    }
+    int Findindex(const T&val){
+        ListNode<T>* current=head;
+        for(int i=0;i<size-1;i++){
+            if(current->data==val)return i;
+            current=current->next
+        }
+        ostringstream s;
+        s<<"the data is Null"<<"å˜»å˜»"; 
+    }
+    void insert(const T&val,int index){
+        ListNode<T>* current=head;
+        for(int i=0;i<index;i++){
+            current=current->next;
+        }
+        ListNode<T>* new_node=new Listnode<T>(val);
+        new_node->next=current->next;=
+        current->next=new_node;
+    }
+    void output(ostream& out)const{
+        for(Listnode<T>*current=head;
+            current!=nullptr;
+            current=current->next){
+                cout<<current->data<<" ";
+            }
+    }
+    ostream& operator<<(const ostream&out,ListArray x){
+        x.output(out);return out;
+    }
+     int  lastIndex(){
+        int*index=new int(0);
+        for(  Listnode<T>* current=head;
+            current->next!=nullptr;
+            current=current->next;
+            )index++;
+          return index;            
+    }
+    T& operator[](int index){
+        ListNode<T>*current=head;
+        for(int i=0;i<index;i++){
+            current=current->next;
+        }
+        return current->data;
+    }
+    bool operator==(ListNode<T>*&other){
+        return ListNode<T>.date==other->data;
+    }
+    bool operator>(ListNode<T>*&other){
+        return ListNode<T>.data>other->data;
+    }
+    bool operator<(ListNode<T>*&other){
+        return ListNode<T>.data<other->data;
+    }
 };
-   
- 
